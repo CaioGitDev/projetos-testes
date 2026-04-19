@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Início",
+    "projects": "Projetos",
+    "about": "Sobre",
+    "contact": "Contato"
+  },
+  "hero": {
+    "title": "Arquitetura que transforma espaços",
+    "subtitle": "Criamos projetos únicos que harmonizam funcionalidade e estética",
+    "cta": "Ver Projetos"
+  },
+  "projects": {
+    "title": "Projetos",
+    "filterAll": "Todos",
+    "filterResidential": "Residencial",
+    "filterCommercial": "Comercial",
+    "filterCultural": "Cultural"
+  },
+  "about": {
+    "title": "Sobre Nós",
+    "philosophy": "Filosofia",
+    "team": "Equipa"
+  },
+  "contact": {
+    "title": "Contato",
+    "name": "Nome",
+    "email": "Email",
+    "message": "Mensagem",
+    "submit": "Enviar",
+    "success": "Mensagem enviada com sucesso!",
+    "error": "Erro ao enviar mensagem."
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados",
+    "address": "Rua da Arquitetura, 123, Lisboa"
+  }
+}

@@ -1,0 +1,120 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getLocaleFromUrl, useTranslations } from "@/i18n";
+import { getFeaturedProjects } from "@/lib/cms";
+import ProjectCarousel from "@/components/react/ProjectCarousel";
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const featuredProjects = await getFeaturedProjects();
+---
+
+<BaseLayout title={t.nav.home}>
+  <section class="pt-20">
+    <ProjectCarousel client:load projects={featuredProjects} />
+  </section>
+
+  <section class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-primary text-sm font-medium uppercase tracking-wider mb-4">
+          {locale === "pt" ? "Destaque" : "Featured"}
+        </p>
+        <h2 class="text-4xl md:text-5xl font-bold text-dark mb-6">
+          {t.projects.title}
+        </h2>
+        <a
+          href={`/${locale}/projetos`}
+          class="inline-block px-8 py-3 bg-primary text-dark font-semibold rounded-lg hover:bg-primaryDark transition-colors"
+        >
+          {locale === "pt" ? "Ver todos os projetos" : "View all projects"}
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredProjects.map((project) => (
+          <a
+            href={`/${locale}/projetos/${project.slug}`}
+            class="group block"
+          >
+            <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+              <img
+                src={project.images[0]}
+                alt={project.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <p class="text-primary text-xs font-medium uppercase tracking-wider mb-1">
+              {project.category}
+            </p>
+            <h3 class="text-xl font-semibold text-dark mb-1 group-hover:text-primary transition-colors">
+              {project.title}
+            </h3>
+            <p class="text-gray-500 text-sm">
+              {project.location} • {project.year}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 px-6 bg-dark text-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-primary text-sm font-medium uppercase tracking-wider mb-4">
+            {t.about.philosophy}
+          </p>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            {locale === "pt"
+              ? "Criamos espaços que inspiram"
+              : "We create spaces that inspire"}
+          </h2>
+          <p class="text-gray-400 text-lg leading-relaxed mb-8">
+            {locale === "pt"
+              ? "Há mais de 15 anos que transformamos visões em realidade através de uma arquitetura que combina estética, funcionalidade e sustentabilidade. Cada projeto é uma jornada única, moldada pelas necessidades e sonhos dos nossos clientes."
+              : "For over 15 years we have been transforming visions into reality through architecture that combines aesthetics, functionality and sustainability. Each project is a unique journey, shaped by the needs and dreams of our clients."}
+          </p>
+          <a
+            href={`/${locale}/sobre`}
+            class="inline-block px-8 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-dark transition-colors"
+          >
+            {t.about.title}
+          </a>
+        </div>
+        <div class="aspect-square rounded-lg overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800"
+            alt="Architecture studio"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 px-6">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-primary text-sm font-medium uppercase tracking-wider mb-4">
+        {locale === "pt" ? "Contacto" : "Contact"}
+      </p>
+      <h2 class="text-4xl md:text-5xl font-bold text-dark mb-6">
+        {locale === "pt" ? "Vamos conversar?" : "Let's talk?"}
+      </h2>
+      <p class="text-gray-500 text-lg max-w-2xl mx-auto mb-8">
+        {locale === "pt"
+          ? "Tem um projeto em mente? Adoraríamos ouvir a sua ideia e explorar como podemos trazê-la à vida."
+          : "Have a project in mind? We would love to hear your idea and explore how we can bring it to life."}
+      </p>
+      <a
+        href={`/${locale}/contato`}
+        class="inline-block px-8 py-3 bg-primary text-dark font-semibold rounded-lg hover:bg-primaryDark transition-colors"
+      >
+        {t.nav.contact}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

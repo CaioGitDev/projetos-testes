@@ -1,0 +1,89 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getLocaleFromUrl, useTranslations } from "@/i18n";
+import { getProjectBySlug, mockProjects } from "@/lib/cms";
+
+export async function getStaticPaths() {
+  return mockProjects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+
+<BaseLayout title={project.title}>
+  <section class="pt-20">
+    <div class="aspect-[21/9] overflow-hidden">
+      <img
+        src={project.images[0]}
+        alt={project.title}
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </section>
+
+  <section class="py-16 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2">
+          <p class="text-primary text-sm font-medium uppercase tracking-wider mb-4">
+            {project.category}
+          </p>
+          <h1 class="text-4xl md:text-5xl font-bold text-dark mb-6">
+            {project.title}
+          </h1>
+          <p class="text-gray-600 text-lg leading-relaxed mb-8">
+            {project.description}
+          </p>
+
+          <div class="grid grid-cols-3 gap-6 py-8 border-t border-b border-gray-200">
+            <div>
+              <p class="text-sm text-gray-500 mb-1">{locale === "pt" ? "Localização" : "Location"}</p>
+              <p class="font-semibold text-dark">{project.location}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500 mb-1">{locale === "pt" ? "Ano" : "Year"}</p>
+              <p class="font-semibold text-dark">{project.year}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500 mb-1">{locale === "pt" ? "Área" : "Area"}</p>
+              <p class="font-semibold text-dark">{project.area}</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-dark mb-6">
+            {locale === "pt" ? "Galeria" : "Gallery"}
+          </h3>
+          <div class="space-y-4">
+            {project.images.map((image, index) => (
+              <div class="aspect-video overflow-hidden rounded-lg">
+                <img
+                  src={image}
+                  alt={`${project.title} - ${index + 1}`}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <a
+          href={`/${locale}/projetos`}
+          class="inline-flex items-center gap-2 text-primary hover:text-primaryDark transition-colors"
+        >
+          <span>&larr;</span>
+          <span>{locale === "pt" ? "Voltar aos projetos" : "Back to projects"}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

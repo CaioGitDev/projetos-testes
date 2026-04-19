@@ -1,0 +1,52 @@
+---
+import { getLocaleFromUrl, useTranslations } from "@/i18n";
+import MobileMenu from "@/components/react/MobileMenu";
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: locale === "en" ? "/" : `/${locale}`, label: t.nav.home },
+  { href: `/${locale}/projetos`, label: t.nav.projects },
+  { href: `/${locale}/sobre`, label: t.nav.about },
+  { href: `/${locale}/contato`, label: t.nav.contact },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+  <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href={locale === "en" ? "/" : `/${locale}`} class="text-2xl font-bold text-primary">
+      ARQ
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              "text-sm font-medium transition-colors hover:text-primary",
+              currentPath === link.href ? "text-primary" : "text-dark",
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="hidden md:flex items-center gap-2">
+      <a
+        href={locale === "pt" ? "/en" : "/pt"}
+        class="text-sm font-medium text-dark hover:text-primary transition-colors"
+      >
+        {locale === "pt" ? "EN" : "PT"}
+      </a>
+    </div>
+
+    <div class="md:hidden">
+      <MobileMenu client:load links={navLinks} locale={locale} />
+    </div>
+  </nav>
+</header>

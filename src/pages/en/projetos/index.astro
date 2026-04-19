@@ -1,0 +1,32 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getLocaleFromUrl, useTranslations } from "@/i18n";
+import { getProjects } from "@/lib/cms";
+import ProjectGallery from "@/components/react/ProjectGallery";
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const projects = await getProjects();
+---
+
+<BaseLayout title={t.projects.title}>
+  <section class="pt-20 pb-12 px-6 bg-dark text-white">
+    <div class="max-w-7xl mx-auto">
+      <p class="text-primary text-sm font-medium uppercase tracking-wider mb-4">
+        {locale === "pt" ? "Portfólio" : "Portfolio"}
+      </p>
+      <h1 class="text-4xl md:text-5xl font-bold">{t.projects.title}</h1>
+    </div>
+  </section>
+
+  <section class="py-16 px-6">
+    <div class="max-w-7xl mx-auto">
+      <ProjectGallery
+        client:load
+        projects={projects}
+        labels={t.projects}
+        locale={locale}
+      />
+    </div>
+  </section>
+</BaseLayout>

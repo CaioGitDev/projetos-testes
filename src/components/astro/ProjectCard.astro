@@ -1,0 +1,33 @@
+---
+import type { Project } from "@/lib/cms";
+
+interface Props {
+  project: Project;
+  locale: string;
+}
+
+const { project, locale } = Astro.props;
+---
+
+<a
+  href={`/${locale}/projetos/${project.slug}`}
+  class="group block"
+>
+  <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+    <img
+      src={project.images[0]}
+      alt={project.title}
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+  </div>
+  <p class="text-primary text-xs font-medium uppercase tracking-wider mb-1">
+    {project.category}
+  </p>
+  <h3 class="text-xl font-semibold text-dark mb-1 group-hover:text-primary transition-colors">
+    {project.title}
+  </h3>
+  <p class="text-gray-500 text-sm">
+    {project.location} • {project.year}
+  </p>
+</a>

@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Architecture that transforms spaces",
+    "subtitle": "We create unique projects that harmonize functionality and aesthetics",
+    "cta": "View Projects"
+  },
+  "projects": {
+    "title": "Projects",
+    "filterAll": "All",
+    "filterResidential": "Residential",
+    "filterCommercial": "Commercial",
+    "filterCultural": "Cultural"
+  },
+  "about": {
+    "title": "About Us",
+    "philosophy": "Philosophy",
+    "team": "Team"
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send",
+    "success": "Message sent successfully!",
+    "error": "Error sending message."
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "address": "123 Architecture Street, Lisbon"
+  }
+}

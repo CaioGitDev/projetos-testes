@@ -1,0 +1,69 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getLocaleFromUrl, useTranslations } from "@/i18n";
+import { getTeam } from "@/lib/cms";
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const team = await getTeam();
+---
+
+<BaseLayout title={t.about.title}>
+  <section class="pt-20 pb-12 px-6 bg-dark text-white">
+    <div class="max-w-7xl mx-auto">
+      <p class="text-primary text-sm font-medium uppercase tracking-wider mb-4">
+        {locale === "pt" ? "Sobre nós" : "About us"}
+      </p>
+      <h1 class="text-4xl md:text-5xl font-bold">{t.about.title}</h1>
+    </div>
+  </section>
+
+  <section class="py-16 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+        <div>
+          <h2 class="text-3xl font-bold text-dark mb-6">{t.about.philosophy}</h2>
+          <p class="text-gray-600 text-lg leading-relaxed mb-6">
+            {locale === "pt"
+              ? "O nosso escritório nasceu da convicção de que a arquitetura tem o poder de transformar não apenas espaços, mas vidas. Acreditamos que cada projeto deve refletir a identidade e as aspirações de quem o habitará, criando conexões emocionais entre pessoas e ambientes."
+              : "Our firm was born from the conviction that architecture has the power to transform not just spaces, but lives. We believe that each project should reflect the identity and aspirations of those who will inhabit it, creating emotional connections between people and environments."}
+          </p>
+          <p class="text-gray-600 text-lg leading-relaxed">
+            {locale === "pt"
+              ? "Com uma equipa multidisciplinar e uma abordagem centrada no cliente, trabalhamos em estreita colaboração desde a conceção até à conclusão, garantindo que cada detalhe contribua para uma experiência espacial única e memorável."
+              : "With a multidisciplinary team and a client-centered approach, we work closely together from conception to completion, ensuring that every detail contributes to a unique and memorable spatial experience."}
+          </p>
+        </div>
+        <div class="aspect-square rounded-lg overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800"
+            alt="Our studio"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 pt-16">
+        <h2 class="text-3xl font-bold text-dark mb-12 text-center">{t.about.team}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {team.map((member) => (
+            <div class="text-center">
+              <div class="aspect-square rounded-full overflow-hidden mb-4 max-w-[200px] mx-auto">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="text-lg font-semibold text-dark">{member.name}</h3>
+              <p class="text-primary text-sm font-medium">{member.role}</p>
+              <p class="text-gray-500 text-sm mt-2">{member.bio}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
