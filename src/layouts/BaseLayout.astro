@@ -49,4 +49,84 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://arquitet
     </main>
     <Footer />
   </body>
+
+  <script>
+    // ── 1. Scroll fade + slide up ──────────────────────────────────────
+    const animObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            animObserver.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -60px 0px" }
+    );
+    document
+      .querySelectorAll("[data-animate]")
+      .forEach((el) => animObserver.observe(el));
+
+    // ── 2. Stagger children ───────────────────────────────────────────
+    document.querySelectorAll("[data-stagger]").forEach((parent) => {
+      const children = [...parent.children] as HTMLElement[];
+      children.forEach((child, i) => {
+        child.style.transitionDelay = `${i * 110}ms`;
+        child.setAttribute("data-animate", "");
+        animObserver.observe(child);
+      });
+    });
+
+    // ── 3. Word reveal ────────────────────────────────────────────────
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
+      const original = el.textContent?.trim() ?? "";
+      el.setAttribute("aria-label", original);
+      const words = original.split(" ");
+      el.innerHTML = words
+        .map(
+          (word, i) =>
+            `<span class="reveal-word"><span class="reveal-inner" style="transition-delay:${i * 70}ms">${word}</span></span>${i < words.length - 1 ? "&nbsp;" : ""}`
+        )
+        .join("");
+      revealObserver.observe(el);
+    });
+
+    // ── 4. Header dynamic background ──────────────────────────────────
+    const header = document.querySelector("header");
+    const homeSection = document.getElementById("home");
+    if (header && homeSection) {
+      const headerObserver = new IntersectionObserver(
+        ([entry]) => {
+          header.classList.toggle("header-solid", !entry.isIntersecting);
+        },
+        { threshold: 0.05 }
+      );
+      headerObserver.observe(homeSection);
+    }
+
+    // ── 5. Hero parallax ──────────────────────────────────────────────
+    const heroParallax = document.getElementById("hero-parallax");
+    if (heroParallax) {
+      const maxScroll = window.innerHeight * 1.5;
+      const onScroll = () => {
+        const y = window.scrollY;
+        if (y < maxScroll) {
+          heroParallax.style.transform = `translateY(${y * 0.28}px)`;
+        }
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+  </script>
 </html>

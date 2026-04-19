@@ -17,7 +17,7 @@ export default function HeroCarousel({ images, interval = 5000 }: Props) {
   }, [images.length, interval]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden">
       {images.map((src, i) => (
         <img
           key={src}

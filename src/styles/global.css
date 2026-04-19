@@ -8,9 +8,127 @@ html {
 
 @layer base {
   :root {
-    --color-primary: #ffcc00;
-    --color-primary-dark: #e6b800;
+    --color-primary: #F5A623;
+    --color-primary-dark: #D97706;
     --color-dark: #1a1a1a;
     --color-light: #f5f5f5;
   }
+}
+
+/* =============================================
+   SCROLL FADE + SLIDE UP
+   ============================================= */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================================
+   WORD REVEAL
+   ============================================= */
+[data-reveal] .reveal-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.05em;
+}
+[data-reveal] .reveal-inner {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal].is-visible .reveal-inner {
+  transform: translateY(0);
+}
+
+/* =============================================
+   HEADER DYNAMIC BACKGROUND
+   ============================================= */
+header {
+  transition:
+    background-color 0.5s ease,
+    backdrop-filter 0.5s ease,
+    border-color 0.5s ease;
+  border-bottom: 1px solid transparent;
+}
+header.header-solid {
+  background-color: rgba(26, 26, 26, 0.97) !important;
+  backdrop-filter: blur(12px) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* =============================================
+   PARALLAX HERO
+   ============================================= */
+#hero-parallax {
+  will-change: transform;
+  position: absolute;
+  inset: 0;
+  top: -25%;
+  bottom: -25%;
+}
+
+/* =============================================
+   GALLERY HOVER — improved
+   ============================================= */
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+}
+.gallery-item img {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1.02);
+}
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+.gallery-item .gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,26,26,0.85) 0%, transparent 50%);
+  transition: background 0.5s ease;
+}
+.gallery-item:hover .gallery-overlay {
+  background: linear-gradient(to top, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.2) 60%);
+}
+.gallery-item .gallery-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1.5rem;
+  transform: translateY(6px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-item:hover .gallery-label {
+  transform: translateY(0);
+}
+.gallery-item .gallery-country {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #F5A623;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
+}
+.gallery-item:hover .gallery-country {
+  opacity: 1;
+  transform: translateY(0);
+}
+.gallery-item .gallery-city {
+  font-weight: 600;
+  color: white;
+  font-size: 1rem;
+  transform: translateY(4px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
+}
+.gallery-item:hover .gallery-city {
+  transform: translateY(0);
 }
