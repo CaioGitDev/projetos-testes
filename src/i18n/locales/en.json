@@ -1,14 +1,45 @@
 {
   "nav": {
-    "home": "Home",
-    "projects": "Projects",
-    "about": "About",
-    "contact": "Contact"
+    "home": "HOME",
+    "about": "ABOUT US",
+    "services": "SERVICES",
+    "projects": "PROJECTS",
+    "contact": "CONTACTS"
   },
-  "hero": {
-    "title": "Architecture that transforms spaces",
-    "subtitle": "We create unique projects that harmonize functionality and aesthetics",
-    "cta": "View Projects"
+  "about": {
+    "label": "ABOUT US",
+    "title": "Transforming ideas into reality.",
+    "p1": "We apply innovative design solutions to improve the residential well-being of people and help workplaces thrive and achieve more in comfortable environments.",
+    "p2": "Our entire team collaborates with clients across all our projects. Our mission is to implement exceptional design ideas and solutions, carefully combining client ambitions, technical possibilities, and environmental considerations. We transform ideas into reality."
+  },
+  "services": {
+    "label": "SERVICES",
+    "title": "Projects with rigour and identity",
+    "intro": "The first thing we do is meet with our clients and discuss their goals for a future project. During that conversation, ask us to communicate your ideas and ask many questions.",
+    "quote": "We focus on the problem, the question and the solution. And we always think about the future.",
+    "item1": "Architecture Projects",
+    "item2": "Interior Design",
+    "item3": "Construction Management",
+    "item4": "Technical Consulting",
+    "servicesLabel": "OUR SERVICES",
+    "servicesTitle": "Be our next client",
+    "service1": "Renovation Projects",
+    "service2": "Architecture and Specialities Projects",
+    "service3": "Building Legalisation",
+    "service4": "Land and property highlights",
+    "seeMore": "learn more"
+  },
+  "phases": {
+    "label": "OUR PROCESS",
+    "phase1Label": "PHASE 01",
+    "phase1Title": "Diagnostic Meeting",
+    "phase1Desc": "In a first approach, we seek to understand your objectives and ideas for your project. Based on our experience and your input, we transform these intentions into an architecture proposal tailored to your needs and desired style.",
+    "phase2Label": "PHASE 02",
+    "phase2Title": "Preliminary Study",
+    "phase2Desc": "In a first approach, we seek to understand your objectives and ideas for your project. Based on our experience, we present a detailed preliminary study that will serve as the basis for the final project.",
+    "phase3Label": "PHASE 03",
+    "phase3Title": "Licensing Process",
+    "phase3Desc": "In a first approach, we seek to understand your objectives and ideas for your project. Based on our experience, we manage the entire licensing process with the competent authorities."
   },
   "projects": {
     "title": "Projects",
@@ -17,22 +48,21 @@
     "filterCommercial": "Commercial",
     "filterCultural": "Cultural"
   },
-  "about": {
-    "title": "About Us",
-    "philosophy": "Philosophy",
-    "team": "Team"
-  },
   "contact": {
-    "title": "Contact",
+    "label": "CONTACTS",
+    "title": "Get in Touch",
+    "subtitle": "Have a project in mind? We would love to hear your idea and explore how we can bring it to life.",
     "name": "Name",
     "email": "Email",
     "message": "Message",
-    "submit": "Send",
+    "submit": "SEND",
     "success": "Message sent successfully!",
     "error": "Error sending message."
   },
   "footer": {
     "rights": "All rights reserved",
-    "address": "123 Architecture Street, Lisbon"
+    "address": "123 Architecture Street, Lisbon",
+    "email": "info@arqmag.pt",
+    "phone": "+351 21 123 4567"
   }
 }

@@ -1,14 +1,45 @@
 {
   "nav": {
-    "home": "Início",
-    "projects": "Projetos",
-    "about": "Sobre",
-    "contact": "Contato"
+    "home": "HOME",
+    "about": "SOBRE NÓS",
+    "services": "SERVIÇOS",
+    "projects": "PROJETOS",
+    "contact": "CONTACTOS"
   },
-  "hero": {
-    "title": "Arquitetura que transforma espaços",
-    "subtitle": "Criamos projetos únicos que harmonizam funcionalidade e estética",
-    "cta": "Ver Projetos"
+  "about": {
+    "label": "SOBRE NÓS",
+    "title": "Transformamos ideias em realidade.",
+    "p1": "Aplicamos soluções de design inovadoras para melhorar o bem-estar residencial das pessoas e ajudar os locais de trabalho a prosperar e a alcançar mais em ambientes confortáveis.",
+    "p2": "Toda a nossa equipa colabora com os clientes em todos os nossos projetos. A nossa missão é implementar ideias e soluções de design excepcionais, combinando cuidadosamente as ambições do cliente, as possibilidades técnicas e as questões ambientais. Transformamos ideias em realidade."
+  },
+  "services": {
+    "label": "SERVIÇOS",
+    "title": "Projetos com rigor e identidade",
+    "intro": "A primeira coisa que fazemos é reunir com os nossos clientes e discutir os seus objetivos para um futuro projeto. Durante essa conversa, peça-nos para comunicar as suas ideias e fazer muitas perguntas.",
+    "quote": "Focamo-nos no problema, na questão e na solução. E pensamos sempre no futuro.",
+    "item1": "Projetos de Arquitetura",
+    "item2": "Design de Interiores",
+    "item3": "Gestão de Obra",
+    "item4": "Consultoria Técnica",
+    "servicesLabel": "OS NOSSOS SERVIÇOS",
+    "servicesTitle": "Seja o nosso próximo cliente",
+    "service1": "Projetos de Remodelação",
+    "service2": "Projetos de Arquitetura e Especialidades",
+    "service3": "Legalização de Edificações",
+    "service4": "Destaques de terrenos ou outros imóveis",
+    "seeMore": "saiba mais"
+  },
+  "phases": {
+    "label": "O NOSSO PROCESSO",
+    "phase1Label": "FASE 01",
+    "phase1Title": "Reunião de Diagnóstico",
+    "phase1Desc": "Numa primeira abordagem, procuramos compreender os seus objetivos e ideias para o seu projeto. Com base na nossa experiência e no seu input, transformamos essas intenções numa proposta de arquitetura ajustada às suas necessidades e ao estilo pretendido.",
+    "phase2Label": "FASE 02",
+    "phase2Title": "Estudo Prévio",
+    "phase2Desc": "Numa primeira abordagem, procuramos compreender os seus objetivos e ideias para o seu projeto. Com base na nossa experiência, apresentamos um estudo prévio detalhado que servirá de base ao projeto definitivo.",
+    "phase3Label": "FASE 03",
+    "phase3Title": "Processo de Licenciamento",
+    "phase3Desc": "Numa primeira abordagem, procuramos compreender os seus objetivos e ideias para o seu projeto. Com base na nossa experiência, gerimos todo o processo de licenciamento junto das entidades competentes."
   },
   "projects": {
     "title": "Projetos",
@@ -17,22 +48,21 @@
     "filterCommercial": "Comercial",
     "filterCultural": "Cultural"
   },
-  "about": {
-    "title": "Sobre Nós",
-    "philosophy": "Filosofia",
-    "team": "Equipa"
-  },
   "contact": {
-    "title": "Contato",
-    "name": "Nome",
+    "label": "CONTACTOS",
+    "title": "Get in Touch",
+    "subtitle": "Tem um projeto em mente? Adoraríamos ouvir a sua ideia e explorar como podemos trazê-la à vida.",
+    "name": "Name",
     "email": "Email",
-    "message": "Mensagem",
-    "submit": "Enviar",
+    "message": "Message",
+    "submit": "SEND",
     "success": "Mensagem enviada com sucesso!",
     "error": "Erro ao enviar mensagem."
   },
   "footer": {
     "rights": "Todos os direitos reservados",
-    "address": "Rua da Arquitetura, 123, Lisboa"
+    "address": "Rua da Arquitetura, 123, Lisboa",
+    "email": "info@arqmag.pt",
+    "phone": "+351 21 123 4567"
   }
 }

@@ -1,15 +1,5 @@
 import { useState } from "react";
-
-interface Project {
-  id: string;
-  slug: string;
-  title: string;
-  category: "residential" | "commercial" | "cultural";
-  location: string;
-  year: number;
-  images: string[];
-  featured: boolean;
-}
+import type { Project } from "@/lib/cms";
 
 interface Props {
   projects: Project[];
@@ -20,11 +10,11 @@ interface Props {
     filterCultural: string;
   };
   locale: string;
+  onProjectClick?: (project: Project) => void;
 }
 
-export default function ProjectGallery({ projects, labels, locale }: Props) {
+export default function ProjectGallery({ projects, labels, locale, onProjectClick }: Props) {
   const [filter, setFilter] = useState<"all" | Project["category"]>("all");
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   const filters: Array<{ key: typeof filter; label: string }> = [
     { key: "all", label: labels.filterAll },
@@ -54,53 +44,57 @@ export default function ProjectGallery({ projects, labels, locale }: Props) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
-          <a key={project.id} href={`/${locale}/projetos/${project.slug}`} className="group block">
-            <div className="aspect-[4/3] overflow-hidden rounded-lg mb-4">
-              <img
-                src={project.images[0]}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-            <p className="text-primary text-xs font-medium uppercase tracking-wider mb-1">
-              {project.category}
-            </p>
-            <h3 className="text-xl font-semibold text-dark mb-1 group-hover:text-primary transition-colors">
-              {project.title}
-            </h3>
-            <p className="text-gray-500 text-sm">
-              {project.location} • {project.year}
-            </p>
-          </a>
-        ))}
+        {filteredProjects.map((project) =>
+          onProjectClick ? (
+            <button
+              key={project.id}
+              type="button"
+              onClick={() => onProjectClick(project)}
+              className="group block text-left w-full"
+            >
+              <div className="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                <img
+                  src={project.images[0]}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <p className="text-primary text-xs font-medium uppercase tracking-wider mb-1">
+                {project.category}
+              </p>
+              <h3 className="text-xl font-semibold text-dark mb-1 group-hover:text-primary transition-colors">
+                {project.title}
+              </h3>
+              <p className="text-gray-500 text-sm">
+                {project.location} • {project.year}
+              </p>
+            </button>
+          ) : (
+            <a
+              key={project.id}
+              href={`/${locale}/projetos/${project.slug}`}
+              className="group block"
+            >
+              <div className="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                <img
+                  src={project.images[0]}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <p className="text-primary text-xs font-medium uppercase tracking-wider mb-1">
+                {project.category}
+              </p>
+              <h3 className="text-xl font-semibold text-dark mb-1 group-hover:text-primary transition-colors">
+                {project.title}
+              </h3>
+              <p className="text-gray-500 text-sm">
+                {project.location} • {project.year}
+              </p>
+            </a>
+          )
+        )}
       </div>
-
-      {lightboxImage && (
-        <dialog
-          className="fixed inset-0 z-50 bg-dark/95 flex items-center justify-center p-6"
-          onClick={() => setLightboxImage(null)}
-          onKeyDown={(e) => e.key === "Escape" && setLightboxImage(null)}
-          aria-modal="true"
-          open
-        >
-          <button
-            type="button"
-            className="absolute top-6 right-6 text-white text-4xl hover:text-primary transition-colors"
-            aria-label="Close lightbox"
-            onClick={() => setLightboxImage(null)}
-          >
-            &times;
-          </button>
-          <img
-            src={lightboxImage}
-            alt=""
-            className="max-w-full max-h-full object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()}
-            onKeyDown={(e) => e.stopPropagation()}
-          />
-        </dialog>
-      )}
     </>
   );
 }

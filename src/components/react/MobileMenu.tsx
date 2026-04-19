@@ -17,15 +17,15 @@ export default function MobileMenu({ links, locale }: Props) {
         aria-label="Toggle menu"
       >
         <span
-          class={`block w-6 h-0.5 bg-dark transition-all duration-300 ${
+          class={`block w-6 h-0.5 bg-white transition-all duration-300 ${
             isOpen ? "rotate-45 translate-y-2" : ""
           }`}
         />
         <span
-          class={`block w-6 h-0.5 bg-dark transition-all duration-300 ${isOpen ? "opacity-0" : ""}`}
+          class={`block w-6 h-0.5 bg-white transition-all duration-300 ${isOpen ? "opacity-0" : ""}`}
         />
         <span
-          class={`block w-6 h-0.5 bg-dark transition-all duration-300 ${
+          class={`block w-6 h-0.5 bg-white transition-all duration-300 ${
             isOpen ? "-rotate-45 -translate-y-2" : ""
           }`}
         />
